@@ -28,7 +28,7 @@ namespace ExifDateEditor.Models
 			IntPtr lpSource,
 			uint dwMessageId,
 			uint dwLanguageId,
-			StringBuilder lpBuffer,
+			StringBuilder lpBuffer, // IntPtr
 			int nSize,
 			IntPtr Arguments);
 

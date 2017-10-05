@@ -69,7 +69,7 @@ namespace ExifDateEditor.Models
 			if (sourceBytes.Length != destinationBytes.Length)
 				return (false, "Lengths don't match.", originalDate, changedDate);
 
-			//CompareBytes(sourceBytes, destinationBytes);
+			//BytesExtension.Compare(sourceBytes, destinationBytes);
 
 			(success, exception) = await WriteAllBytes(destinationFilePath, destinationBytes).ConfigureAwait(false);
 			return (success, exception?.Message, originalDate, changedDate);
@@ -123,20 +123,6 @@ namespace ExifDateEditor.Models
 				return (false, null);
 
 			return (true, metadata.GetQuery(dateTakenQuery).ToString());
-		}
-
-		private static void CompareBytes(byte[] sourceBytes, byte[] destinationBytes)
-		{
-			for (int i = 0; i < sourceBytes.Length; i++)
-			{
-				if (sourceBytes[i] == destinationBytes[i])
-					continue;
-
-				Debug.WriteLine("Position: {0} (0x{0:X4}) Value: {1} -> {2}",
-				  i,
-				  BitConverter.ToString(new[] { sourceBytes[i] }),
-				  BitConverter.ToString(new[] { destinationBytes[i] }));
-			}
 		}
 	}
 }
