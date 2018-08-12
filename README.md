@@ -1,12 +1,16 @@
 ﻿# Exif Date Editor
 
-Exif Date Editor is a Windows desktop tool to directly edit Exif date fields in JPG files.
-This tool is good for the case when you wish to correct __date taken__ of photos after you took them with a camera whose date was not correctly set.
+A simple tool to directly edit Exif date fields in JPG files. It is useful when you wish to correct __date taken__ of photos which was taken with a camera whose date was incorrectly set.
+
+![Screenshot](Images/Screenshot.png)
 
 ## Requirements
 
- * Windows 7 or newer
  * .NET Framework 4.6.2
+
+## Download
+
+:floppy_disk: <a href="https://github.com/emoacht/ExifDateEditor/releases/download/1.1.0/ExifDateEditor110.zip">Download</a>
 
 ## License
 
