@@ -15,8 +15,6 @@ namespace ExifDateEditor.Models
 			if (!sourceIndices.Any())
 				return source;
 
-			Debug.WriteLine("Indices: {0} ({1})", String.Join(", ", sourceIndices), sourceIndices.Length);
-
 			var destination = new byte[source.Length + (newValue.Length - oldValue.Length) * sourceIndices.Length];
 
 			// Copy source before old value.
@@ -78,33 +76,38 @@ namespace ExifDateEditor.Models
 
 			var valueBytes = value as byte[] ?? value.ToArray();
 			int valueIndex = 0;
-			int valueIndexLast = valueBytes.Length - 1;
 
-			int sourceIndex = -1; // -1 is to make it 0 at the first loop.
+			int valueIndexLast = valueBytes.Length - 1;
+			if (valueIndexLast < 0)
+				throw new ArgumentException(nameof(value));
+
+			int sourceIndex = 0;
 
 			foreach (var sourceByte in source)
 			{
-				sourceIndex++;
+				if (sourceByte == valueBytes[valueIndex])
+				{
+					if (valueIndex == valueIndexLast)
+					{
+						yield return sourceIndex - valueIndexLast; // Found
 
-				if (sourceByte != valueBytes[valueIndex])
+						count++;
+						if ((0 <= maxCount) && (maxCount <= count))
+							yield break;
+
+						valueIndex = 0;
+					}
+					else
+					{
+						valueIndex++;
+					}
+				}
+				else
 				{
 					valueIndex = 0;
-					continue;
 				}
 
-				if (valueIndex < valueIndexLast)
-				{
-					valueIndex++;
-					continue;
-				}
-
-				yield return sourceIndex - valueIndexLast;
-
-				count++;
-				if ((0 <= maxCount) && (maxCount <= count))
-					yield break;
-
-				valueIndex = 0;
+				sourceIndex++;
 			}
 		}
 
@@ -112,23 +115,28 @@ namespace ExifDateEditor.Models
 		public static int SequenceIndexOf(this byte[] source, byte[] value, int startIndex = 0)
 		{
 			int valueIndex = 0;
+
 			int valueIndexLast = value.Length - 1;
+			if (valueIndexLast < 0)
+				throw new ArgumentException(nameof(value));
 
 			for (int sourceIndex = startIndex; sourceIndex < source.Length; sourceIndex++)
 			{
-				if (source[sourceIndex] != value[valueIndex])
+				if (source[sourceIndex] == value[valueIndex])
+				{
+					if (valueIndex == valueIndexLast)
+					{
+						return sourceIndex - valueIndexLast; // Found
+					}
+					else
+					{
+						valueIndex++;
+					}
+				}
+				else
 				{
 					valueIndex = 0;
-					continue;
 				}
-
-				if (valueIndex < valueIndexLast)
-				{
-					valueIndex++;
-					continue;
-				}
-
-				return sourceIndex - valueIndexLast;
 			}
 
 			return -1;
@@ -139,27 +147,32 @@ namespace ExifDateEditor.Models
 		{
 			var valueBytes = value as byte[] ?? value.ToArray();
 			int valueIndex = 0;
-			int valueIndexLast = valueBytes.Length - 1;
 
-			int sourceIndex = startIndex - 1; // -1 is to make it startIndex at the first loop.
+			int valueIndexLast = valueBytes.Length - 1;
+			if (valueIndexLast < 0)
+				throw new ArgumentException(nameof(value));
+
+			int sourceIndex = startIndex;
 
 			foreach (var sourceByte in source.Skip(startIndex))
 			{
-				sourceIndex++;
-
-				if (sourceByte != valueBytes[valueIndex])
+				if (sourceByte == valueBytes[valueIndex])
+				{
+					if (valueIndex == valueIndexLast)
+					{
+						return sourceIndex - valueIndexLast; // Found
+					}
+					else
+					{
+						valueIndex++;
+					}
+				}
+				else
 				{
 					valueIndex = 0;
-					continue;
 				}
 
-				if (valueIndex < valueIndexLast)
-				{
-					valueIndex++;
-					continue;
-				}
-
-				return sourceIndex - valueIndexLast;
+				sourceIndex++;
 			}
 
 			return -1;
