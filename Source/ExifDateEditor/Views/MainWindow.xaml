@@ -4,7 +4,7 @@
 		xmlns:controls="clr-namespace:ExifDateEditor.Views.Controls"
 		xmlns:converters="clr-namespace:ExifDateEditor.Views.Converters"
 		Name="WindowRoot"
-		Title="Exif Date Editor"
+		Title="{Binding ElementName=WindowRoot, Path=ProductName}"
 		Width="560" MinWidth="500"
 		Height="360" MinHeight="{Binding ElementName=WindowRoot, Path=DesiredMinHeight, Mode=OneWay}">
 	<Window.Resources>

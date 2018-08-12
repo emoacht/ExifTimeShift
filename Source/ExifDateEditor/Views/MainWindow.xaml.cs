@@ -24,6 +24,7 @@ namespace ExifDateEditor.Views
 		public MainWindow()
 		{
 			InitializeComponent();
+
 			this.DataContext = _mainWindowViewModel = new MainWindowViewModel();
 
 			this.Loaded += (sender, e) => CheckHeights();
@@ -48,6 +49,14 @@ namespace ExifDateEditor.Views
 				typeof(MainWindow),
 				new PropertyMetadata(0D));
 
+		public string ProductName => _productName.Value;
+
+		private readonly Lazy<string> _productName = new Lazy<string>(() =>
+			Assembly.GetExecutingAssembly()
+				.GetCustomAttributes(typeof(AssemblyProductAttribute))
+				.Cast<AssemblyProductAttribute>()
+				.First().Product);
+
 		private async void Find_Click(object sender, RoutedEventArgs e)
 		{
 			await _mainWindowViewModel.FindAsync();
@@ -63,17 +72,11 @@ namespace ExifDateEditor.Views
 			_mainWindowViewModel.Select();
 		}
 
-		private readonly Lazy<string> _productName = new Lazy<string>(() =>
-			Assembly.GetExecutingAssembly()
-				.GetCustomAttributes(typeof(AssemblyProductAttribute))
-				.Cast<AssemblyProductAttribute>()
-				.First().Product);
-
 		private async void Apply_Click(object sender, RoutedEventArgs e)
 		{
 			var (success, message) = await _mainWindowViewModel.ApplyAsync();
 			SystemSounds.Asterisk.Play();
-			MessageBox.Show(this, message, _productName.Value);
+			MessageBox.Show(this, message, ProductName);
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace ExifDateEditor.Views.Controls
 
 		private RepeatButton UpButton
 		{
-			get { return _upButton; }
+			get => _upButton;
 			set
 			{
 				if (_upButton != null)
@@ -33,7 +33,7 @@ namespace ExifDateEditor.Views.Controls
 
 		private RepeatButton DownButton
 		{
-			get { return _downButton; }
+			get => _downButton;
 			set
 			{
 				if (_downButton != null)
@@ -58,7 +58,7 @@ namespace ExifDateEditor.Views.Controls
 		}
 		public static readonly DependencyProperty ValueProperty =
 			DependencyProperty.Register(
-				"Value",
+				nameof(Value),
 				typeof(double),
 				typeof(NumericUpDown),
 				new FrameworkPropertyMetadata(
@@ -108,7 +108,7 @@ namespace ExifDateEditor.Views.Controls
 		}
 		public static readonly DependencyProperty FrequencyProperty =
 			DependencyProperty.Register(
-				"Frequency",
+				nameof(Frequency),
 				typeof(double),
 				typeof(NumericUpDown),
 				new FrameworkPropertyMetadata(
@@ -127,7 +127,7 @@ namespace ExifDateEditor.Views.Controls
 		}
 		public static readonly DependencyProperty MiddleProperty =
 			DependencyProperty.Register(
-				"Middle",
+				nameof(Middle),
 				typeof(double),
 				typeof(NumericUpDown),
 				new FrameworkPropertyMetadata(0D));
@@ -143,7 +143,7 @@ namespace ExifDateEditor.Views.Controls
 		}
 		public static readonly DependencyProperty HigherFrequencyProperty =
 			DependencyProperty.Register(
-				"HigherFrequency",
+				nameof(HigherFrequency),
 				typeof(double),
 				typeof(NumericUpDown),
 				new FrameworkPropertyMetadata(0D));
@@ -159,15 +159,13 @@ namespace ExifDateEditor.Views.Controls
 		}
 		public static readonly DependencyProperty LowerFrequencyProperty =
 			DependencyProperty.Register(
-				"LowerFrequency",
+				nameof(LowerFrequency),
 				typeof(double),
 				typeof(NumericUpDown),
 				new FrameworkPropertyMetadata(0D));
 
-		private bool IsMiddleEnabled
-		{
-			get { return (Minimum < Middle) && (Middle < Maximum) && (0 < LowerFrequency) && (0 < HigherFrequency); }
-		}
+		private bool IsMiddleEnabled =>
+			(Minimum < Middle) && (Middle < Maximum) && (0 < LowerFrequency) && (0 < HigherFrequency);
 
 		#endregion
 
