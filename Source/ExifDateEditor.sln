@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifDateEditor", "ExifDateEditor\ExifDateEditor.csproj", "{1D2F4DBD-1BA9-4509-9643-E826F7C2277F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifDateEditor.Test", "ExifDateEditor.Test\ExifDateEditor.Test.csproj", "{5C5A75C2-EEDF-4E8F-9AA9-E3C62AAE496B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D2F4DBD-1BA9-4509-9643-E826F7C2277F} = {1D2F4DBD-1BA9-4509-9643-E826F7C2277F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{1D2F4DBD-1BA9-4509-9643-E826F7C2277F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2F4DBD-1BA9-4509-9643-E826F7C2277F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2F4DBD-1BA9-4509-9643-E826F7C2277F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C5A75C2-EEDF-4E8F-9AA9-E3C62AAE496B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5A75C2-EEDF-4E8F-9AA9-E3C62AAE496B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5A75C2-EEDF-4E8F-9AA9-E3C62AAE496B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5A75C2-EEDF-4E8F-9AA9-E3C62AAE496B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
