@@ -49,8 +49,7 @@ namespace ExifDateEditor.Models
 			if (!success)
 				return (false, "Failed to get data taken string.", default(DateTime), default(DateTime));
 
-			DateTime originalDate;
-			if (!DateTime.TryParseExact(originalString, dateFormat, null, DateTimeStyles.None, out originalDate))
+			if (!DateTime.TryParseExact(originalString, dateFormat, null, DateTimeStyles.None, out DateTime originalDate))
 				return (false, "Failed to parse date taken string.", default(DateTime), default(DateTime));
 
 			if (changeSpan == TimeSpan.Zero)

@@ -129,7 +129,7 @@ namespace ExifDateEditor.ViewModels
 		public bool CanApply
 		{
 			get => _canApply;
-			private set { SetProperty(ref _canApply, value); }
+			private set => SetProperty(ref _canApply, value);
 		}
 		private bool _canApply = false;
 
