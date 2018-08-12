@@ -143,15 +143,17 @@
 						 Content="Save in another location"
 						 IsChecked="{Binding SavesInAnotherLocation, Mode=TwoWay}"/>
 
-			<TextBox Margin="8,4"
-					 IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}"
-					 Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<StackPanel Margin="8,4" IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}">
+				<TextBox Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+				<Button Content="Select folder"
+						Click="Select_Click"/>
+			</StackPanel>
 
 			<CheckBox Margin="8,4"
 					  Content="Set same file creation time"
 					  IsChecked="{Binding SetsSameFileCreationTime, Mode=TwoWay}"/>
 
-			<Button Margin="0,8" Padding="4"
+			<Button Margin="0,8" Padding="6"
 					Content="Apply"
 					IsEnabled="{Binding CanApply, Mode=OneWay}"
 					Click="Apply_Click"/>

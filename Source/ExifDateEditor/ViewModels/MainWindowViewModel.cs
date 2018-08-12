@@ -100,6 +100,30 @@ namespace ExifDateEditor.ViewModels
 		}
 		private string _anotherLocationPath;
 
+		public void Select()
+		{
+			var initialPath = AnotherLocationPath;
+
+			if (!string.IsNullOrEmpty(initialPath) && !Directory.Exists(initialPath))
+			{
+				var parent = Path.GetDirectoryName(initialPath);
+				if (!string.IsNullOrEmpty(parent))
+					initialPath = parent;
+			}
+
+			using (var fbd = new System.Windows.Forms.FolderBrowserDialog
+			{
+				Description = "Select folder",
+				SelectedPath = initialPath,
+			})
+			{
+				if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				{
+					AnotherLocationPath = fbd.SelectedPath;
+				}
+			}
+		}
+
 		public bool SetsSameFileCreationTime { get; set; }
 
 		public bool CanApply

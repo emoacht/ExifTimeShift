@@ -58,6 +58,11 @@ namespace ExifDateEditor.Views
 			_mainWindowViewModel.Reset();
 		}
 
+		private void Select_Click(object sender, RoutedEventArgs e)
+		{
+			_mainWindowViewModel.Select();
+		}
+
 		private readonly Lazy<string> _productName = new Lazy<string>(() =>
 			Assembly.GetExecutingAssembly()
 				.GetCustomAttributes(typeof(AssemblyProductAttribute))
