@@ -124,7 +124,7 @@ namespace ExifDateEditor.ViewModels
 			}
 		}
 
-		public bool SetsSameFileCreationTime { get; set; }
+		public bool SetsSameFileCreationTime { get; set; } = true;
 
 		public bool CanApply
 		{
