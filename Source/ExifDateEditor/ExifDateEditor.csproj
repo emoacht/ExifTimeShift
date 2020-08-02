@@ -80,6 +80,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\FileTime.cs" />
     <Compile Include="Views\Controls\NumericUpDown.cs" />
+    <Compile Include="Views\Controls\OpenFolderDialog.cs" />
     <Compile Include="Views\Converters\BooleanInverseConverter.cs" />
     <Compile Include="Views\Converters\BooleanToBrushConverter.cs" />
     <Compile Include="Views\WindowGeometry.cs" />

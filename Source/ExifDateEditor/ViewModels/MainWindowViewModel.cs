@@ -11,6 +11,7 @@ using Microsoft.Win32;
 
 using ExifDateEditor.Common;
 using ExifDateEditor.Models;
+using ExifDateEditor.Views.Controls;
 
 namespace ExifDateEditor.ViewModels
 {
@@ -106,21 +107,19 @@ namespace ExifDateEditor.ViewModels
 
 			if (!string.IsNullOrEmpty(initialPath) && !Directory.Exists(initialPath))
 			{
-				var parent = Path.GetDirectoryName(initialPath);
-				if (!string.IsNullOrEmpty(parent))
-					initialPath = parent;
+				var parentPath = Path.GetDirectoryName(initialPath);
+				if (!string.IsNullOrEmpty(parentPath))
+					initialPath = parentPath;
 			}
 
-			using (var fbd = new System.Windows.Forms.FolderBrowserDialog
+			var ofd = new OpenFolderDialog
 			{
-				Description = "Select folder",
-				SelectedPath = initialPath,
-			})
+				Title = "Select folder",
+				InitialPath = initialPath
+			};
+			if (ofd.ShowDialog())
 			{
-				if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-				{
-					AnotherLocationPath = fbd.SelectedPath;
-				}
+				AnotherLocationPath = ofd.SelectedPath;
 			}
 		}
 
