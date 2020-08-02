@@ -45,7 +45,7 @@ namespace ExifDateEditor.ViewModels
 				Files.Add(new FileItem(filePath, originalDate));
 			}
 
-			UpdateCanApply();
+			ChangeCanApply();
 		}
 
 		#endregion
@@ -55,21 +55,21 @@ namespace ExifDateEditor.ViewModels
 		public int Day
 		{
 			get => _day;
-			set { SetProperty(ref _day, value); UpdateCanApply(); }
+			set => SetPropertyValue(ref _day, value, ChangeCanApply);
 		}
 		private int _day = 0;
 
 		public int Hour
 		{
 			get => _hour;
-			set { SetProperty(ref _hour, value); UpdateCanApply(); }
+			set => SetPropertyValue(ref _hour, value, ChangeCanApply);
 		}
 		private int _hour = 0;
 
 		public int Minute
 		{
 			get => _minute;
-			set { SetProperty(ref _minute, value); UpdateCanApply(); }
+			set => SetPropertyValue(ref _minute, value, ChangeCanApply);
 		}
 		private int _minute = 0;
 
@@ -89,14 +89,14 @@ namespace ExifDateEditor.ViewModels
 		public bool SavesInAnotherLocation
 		{
 			get => _savesInAnotherLocation;
-			set { SetProperty(ref _savesInAnotherLocation, value); UpdateCanApply(); }
+			set => SetPropertyValue(ref _savesInAnotherLocation, value, ChangeCanApply);
 		}
 		private bool _savesInAnotherLocation = true; // Safer side
 
 		public string AnotherLocationPath
 		{
 			get => _anotherLocationPath;
-			set { SetProperty(ref _anotherLocationPath, value); UpdateCanApply(); }
+			set => SetPropertyValue(ref _anotherLocationPath, value, ChangeCanApply);
 		}
 		private string _anotherLocationPath;
 
@@ -127,11 +127,11 @@ namespace ExifDateEditor.ViewModels
 		public bool CanApply
 		{
 			get => _canApply;
-			private set => SetProperty(ref _canApply, value);
+			private set => SetPropertyValue(ref _canApply, value);
 		}
 		private bool _canApply = false;
 
-		private void UpdateCanApply()
+		private void ChangeCanApply()
 		{
 			CanApply = Files.Any()
 				&& (ChangeSpan != TimeSpan.Zero)
@@ -141,7 +141,7 @@ namespace ExifDateEditor.ViewModels
 		public bool IsApplying
 		{
 			get => _isApplying;
-			set => SetProperty(ref _isApplying, value);
+			set => SetPropertyValue(ref _isApplying, value);
 		}
 		private bool _isApplying;
 
@@ -263,14 +263,14 @@ namespace ExifDateEditor.ViewModels
 		public DateTime Date
 		{
 			get => _date;
-			set => SetProperty(ref _date, value);
+			set => SetPropertyValue(ref _date, value);
 		}
 		private DateTime _date;
 
 		public bool? IsSuccess
 		{
 			get => _isSuccess;
-			set => SetProperty(ref _isSuccess, value);
+			set => SetPropertyValue(ref _isSuccess, value);
 		}
 		private bool? _isSuccess = null;
 
