@@ -14,10 +14,12 @@ namespace ExifDateEditor.Views.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is bool sourceValue))
-				return DependencyProperty.UnsetValue;
-
-			return !sourceValue;
+			return value switch
+			{
+				true => false,
+				false => true,
+				_ => DependencyProperty.UnsetValue
+			};
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
