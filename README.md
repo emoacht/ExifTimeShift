@@ -6,11 +6,11 @@ A simple tool to directly edit Exif date fields in JPG files. It is useful when 
 
 ## Requirements
 
- * .NET Framework 4.6.2
+ * .NET Framework 4.7.2
 
 ## Download
 
-:floppy_disk: <a href="https://github.com/emoacht/ExifDateEditor/releases/download/1.1.0/ExifDateEditor110.zip">Download</a>
+:floppy_disk: <a href="https://github.com/emoacht/ExifDateEditor/releases/download/1.2.0/ExifDateEditor120.zip">Download</a>
 
 ## License
 
