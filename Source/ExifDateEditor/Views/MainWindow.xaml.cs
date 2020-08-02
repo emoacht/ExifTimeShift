@@ -57,9 +57,9 @@ namespace ExifDateEditor.Views
 				.Cast<AssemblyProductAttribute>()
 				.First().Product);
 
-		private async void Find_Click(object sender, RoutedEventArgs e)
+		private async void SelectFiles_Click(object sender, RoutedEventArgs e)
 		{
-			await _mainWindowViewModel.FindAsync();
+			await _mainWindowViewModel.SelectFilesAsync();
 		}
 
 		private void Reset_Click(object sender, RoutedEventArgs e)
@@ -67,14 +67,14 @@ namespace ExifDateEditor.Views
 			_mainWindowViewModel.Reset();
 		}
 
-		private void Select_Click(object sender, RoutedEventArgs e)
+		private void SelectFolder_Click(object sender, RoutedEventArgs e)
 		{
-			_mainWindowViewModel.Select();
+			_mainWindowViewModel.SelectFolder();
 		}
 
 		private async void Apply_Click(object sender, RoutedEventArgs e)
 		{
-			var (success, message) = await _mainWindowViewModel.ApplyAsync();
+			var (_, message) = await _mainWindowViewModel.ApplyAsync();
 			SystemSounds.Asterisk.Play();
 			MessageBox.Show(this, message, ProductName);
 		}

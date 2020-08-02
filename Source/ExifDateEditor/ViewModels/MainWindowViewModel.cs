@@ -21,14 +21,13 @@ namespace ExifDateEditor.ViewModels
 
 		public ObservableCollection<FileItem> Files { get; } = new ObservableCollection<FileItem>();
 
-		public async Task FindAsync()
+		public async Task SelectFilesAsync()
 		{
 			var ofd = new OpenFileDialog
 			{
 				Filter = "JPG Files|*.jpg",
 				Multiselect = true
 			};
-
 			if (ofd.ShowDialog() != true)
 				return;
 
@@ -101,7 +100,7 @@ namespace ExifDateEditor.ViewModels
 		}
 		private string _anotherLocationPath;
 
-		public void Select()
+		public void SelectFolder()
 		{
 			var initialPath = AnotherLocationPath;
 

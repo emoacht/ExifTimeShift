@@ -66,8 +66,8 @@
 			</Grid.RowDefinitions>
 
 			<Button Grid.Row="0"
-					Content="Find files"
-					Click="Find_Click"/>
+					Content="Select files"
+					Click="SelectFiles_Click"/>
 			<ListView Grid.Row="1"
 					  ScrollViewer.HorizontalScrollBarVisibility="Auto"
 					  ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -143,10 +143,11 @@
 						 Content="Save in another location"
 						 IsChecked="{Binding SavesInAnotherLocation, Mode=TwoWay}"/>
 
-			<StackPanel Margin="8,4" IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}">
-				<TextBox Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<StackPanel Margin="8,4"
+						IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}">
 				<Button Content="Select folder"
-						Click="Select_Click"/>
+						Click="SelectFolder_Click"/>
+				<TextBox Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 			</StackPanel>
 
 			<CheckBox Margin="8,4"
