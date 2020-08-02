@@ -153,21 +153,26 @@ namespace ExifDateEditor.ViewModels
 			{
 				IsApplying = true;
 
-				Files.ToList().ForEach(x =>
+				var semaphore = new SemaphoreSlim(3, 3);
+
+				await Task.WhenAll(Files.Select(async x =>
 				{
 					x.IsSuccess = null;
 					x.Message = null;
-				});
 
-				await Task.WhenAll(Files
-					.Where(x => File.Exists(x.Path))
-					.Select(async x =>
+					try
 					{
-						var destinationFilePath = !SavesInAnotherLocation
-							? x.Path
-							: Path.Combine(AnotherLocationPath, Path.GetFileName(x.Path));
+						await semaphore.WaitAsync();
 
-						var (success, message, changedDate) = await ExifDate.ChangeDateTakenAsync(x.Path, destinationFilePath, ChangeSpan);
+						var sourceFilePath = x.Path;
+						if (!File.Exists(sourceFilePath))
+							return;
+
+						var destinationFilePath = !SavesInAnotherLocation
+							? sourceFilePath
+							: Path.Combine(AnotherLocationPath, Path.GetFileName(sourceFilePath));
+
+						var (success, message, changedDate) = await ExifDate.ChangeDateTakenAsync(sourceFilePath, destinationFilePath, ChangeSpan);
 						if (!success)
 						{
 							x.IsSuccess = false;
@@ -175,12 +180,10 @@ namespace ExifDateEditor.ViewModels
 							return;
 						}
 
-						Debug.WriteLine($"{x.Path} - {x.Date:yyyy/MM/dd HH:mm:ss} -> {changedDate:yyyy/MM/dd HH:mm:ss}");
+						Debug.WriteLine($"{sourceFilePath} - {x.Date:yyyy/MM/dd HH:mm:ss} -> {changedDate:yyyy/MM/dd HH:mm:ss}");
 
 						if (!SavesInAnotherLocation)
-						{
 							x.Date = changedDate;
-						}
 
 						if (SetsSameFileCreationTime)
 						{
@@ -194,7 +197,12 @@ namespace ExifDateEditor.ViewModels
 						}
 
 						x.IsSuccess = true;
-					}));
+					}
+					finally
+					{
+						semaphore.Release();
+					}
+				}));
 
 				var messages = Files
 					.Where(x => x.IsSuccess == false)
