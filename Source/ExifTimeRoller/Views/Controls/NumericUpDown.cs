@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace ExifTimeRoller.Views.Controls
 {
@@ -242,6 +243,21 @@ namespace ExifTimeRoller.Views.Controls
 					}
 					break;
 			}
+
+			ChangeCanChangeValue();
+		}
+
+		private const double ReductionFactor = 0.01;
+
+		protected override void OnMouseWheel(MouseWheelEventArgs e)
+		{
+			base.OnMouseWheel(e);
+
+			if (e.Delta == 0)
+				return;
+
+			var num = Value + e.Delta * ReductionFactor;
+			Value = Math.Min(this.Maximum, Math.Max(this.Minimum, Math.Round(num)));
 
 			ChangeCanChangeValue();
 		}
