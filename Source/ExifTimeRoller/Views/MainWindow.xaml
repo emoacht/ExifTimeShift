@@ -5,7 +5,7 @@
 		xmlns:converters="clr-namespace:ExifTimeRoller.Views.Converters"
 		Name="WindowRoot"
 		Title="{Binding ElementName=WindowRoot, Path=ProductName}"
-		Width="560" MinWidth="500"
+		Width="580" MinWidth="500"
 		Height="360" MinHeight="{Binding ElementName=WindowRoot, Path=DesiredMinHeight, Mode=OneWay}">
 	<Window.Resources>
 		<!-- NumericUpDown -->
@@ -13,34 +13,25 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate>
-						<Grid Width="90">
+						<Grid Width="45" Height="80">
 							<TextBox HorizontalAlignment="Stretch"
 									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 									 IsReadOnly="True" IsUndoEnabled="False"
+									 FontSize="16"
 									 Text="{Binding Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:NumericUpDown}}, Mode=OneWay, StringFormat='+#;-#;0'}"/>
-							<RepeatButton x:Name="PART_DownButton"
-										  Width="30" HorizontalAlignment="Left">
-								<Path Margin="4.5" Stretch="Uniform"
-									  Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type RepeatButton}}, Mode=OneWay}">
-									<Path.Data>
-										<GeometryGroup FillRule="Nonzero">
-											<RectangleGeometry Rect="0,14 30,2"/>
-											<RectangleGeometry Rect="14,0 0,30"/>
-										</GeometryGroup>
-									</Path.Data>
-								</Path>
-							</RepeatButton>
 							<RepeatButton x:Name="PART_UpButton"
-										  Width="30" HorizontalAlignment="Right">
-								<Path Margin="4.5" Stretch="Uniform"
-									  Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type RepeatButton}}, Mode=OneWay}">
-									<Path.Data>
-										<GeometryGroup FillRule="Nonzero">
-											<RectangleGeometry Rect="0,14 30,2"/>
-											<RectangleGeometry Rect="14,0 2,30"/>
-										</GeometryGroup>
-									</Path.Data>
-								</Path>
+										  Height="24" VerticalAlignment="Top">
+								<Polyline Margin="6.5" Stretch="Uniform"
+										  Points="0,1 1,0 2,1"
+										  Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type RepeatButton}}, Mode=OneWay}"
+										  StrokeThickness="1"/>
+							</RepeatButton>
+							<RepeatButton x:Name="PART_DownButton"
+										  Height="24" VerticalAlignment="Bottom">
+								<Polyline Margin="6.5" Stretch="Uniform"
+										  Points="0,0 1,1 2,0"
+										  Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type RepeatButton}}, Mode=OneWay}"
+										  StrokeThickness="1"/>
 							</RepeatButton>
 						</Grid>
 					</ControlTemplate>
@@ -94,67 +85,74 @@
 					Name="Dashboard"
 					VerticalAlignment="Top"
 					IsEnabled="{Binding IsApplying, Converter={StaticResource BooleanInverseConverterKey}}">
-			<!-- Date -->
-			<Grid HorizontalAlignment="Left" Margin="4,8">
+			<!-- Time -->
+			<Grid HorizontalAlignment="Center">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 
 				<!-- Day -->
 				<TextBlock Grid.Row="0" Grid.Column="0"
-						   Margin="8,0" VerticalAlignment="Center"
+						   Margin="0,2" HorizontalAlignment="Center"
 						   Text="Day"/>
-				<controls:NumericUpDown Grid.Row="0" Grid.Column="1"
+				<controls:NumericUpDown Grid.Row="1" Grid.Column="0"
 										Minimum="-366" Maximum="366"
 										Value="{Binding Day, Mode=TwoWay}"/>
 
 				<!-- Hour -->
-				<TextBlock Grid.Row="1" Grid.Column="0"
-						   Margin="8,0" VerticalAlignment="Center"
+				<TextBlock Grid.Row="0" Grid.Column="1"
+						   Margin="0,2" HorizontalAlignment="Center"
 						   Text="Hour"/>
 				<controls:NumericUpDown Grid.Row="1" Grid.Column="1"
 										Minimum="-24" Maximum="24"
 										Value="{Binding Hour, Mode=TwoWay}"/>
 
 				<!-- Minute -->
-				<TextBlock Grid.Row="2" Grid.Column="0"
-						   Margin="8,0" VerticalAlignment="Center"
+				<TextBlock Grid.Row="0" Grid.Column="2"
+						   Margin="0,2" HorizontalAlignment="Center"
 						   Text="Minute"/>
-				<controls:NumericUpDown Grid.Row="2" Grid.Column="1"
+				<controls:NumericUpDown Grid.Row="1" Grid.Column="2" 
 										Minimum="-60" Maximum="60"
 										Value="{Binding Minute, Mode=TwoWay}"/>
 
-				<Button Grid.Row="3" Grid.Column="1"
+				<Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
 						Content="Reset"
 						Click="Reset_Click"/>
 			</Grid>
 
-			<!-- Settings -->
-			<RadioButton Margin="8,4"
-						 Content="Overwrite existing file"/>
-			<RadioButton Margin="8,4"
-						 Content="Save in another location"
-						 IsChecked="{Binding SavesInAnotherLocation, Mode=TwoWay}"/>
+			<!-- Destination -->
+			<GroupBox Margin="12,10,12,0"
+					  Padding="4"
+					  Header="Destination">
+				<StackPanel>
+					<RadioButton Margin="0,4"
+								 Content="Overwrite existing file"/>
+					<RadioButton Margin="0,4"
+								 Content="Save in another location"
+								 IsChecked="{Binding SavesInAnotherLocation, Mode=TwoWay}"/>
 
-			<StackPanel Margin="8,4"
-						IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}">
-				<Button Content="Select folder"
-						Click="SelectFolder_Click"/>
-				<TextBox Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-			</StackPanel>
+					<StackPanel Margin="2,4"
+								IsEnabled="{Binding SavesInAnotherLocation, Mode=OneWay}">
+						<Button Content="Select folder"
+								Click="SelectFolder_Click"/>
+						<TextBox Text="{Binding AnotherLocationPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
 
-			<CheckBox Margin="8,4"
+			<CheckBox Margin="12,10,12,0"
 					  Content="Set same file creation time"
 					  IsChecked="{Binding SetsSameFileCreationTime, Mode=TwoWay}"/>
 
-			<Button Margin="0,8" Padding="6"
+			<Button Margin="0,10"
+					Padding="6"
 					Content="Apply"
 					IsEnabled="{Binding CanApply, Mode=OneWay}"
 					Click="Apply_Click"/>
