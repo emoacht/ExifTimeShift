@@ -1,8 +1,8 @@
-﻿# Exif Date Editor
+﻿# Exif Time Roller
 
-A simple tool to directly edit Exif date fields in JPG files. It is useful when you wish to correct __date taken__ of photos which was taken with a camera whose date was incorrectly set.
+A simple tool to directly change Exif date fields in JPG files. It is useful when you wish to correct __date taken__ of photos that were taken with a camera whose date was incorrectly set.
 
-![Screenshot](Images/Screenshot.png)
+![Screenshot](Images/Screenshot2.png)
 
 ## Requirements
 
@@ -10,7 +10,7 @@ A simple tool to directly edit Exif date fields in JPG files. It is useful when 
 
 ## Download
 
-:floppy_disk: <a href="https://github.com/emoacht/ExifDateEditor/releases/download/1.2.0/ExifDateEditor120.zip">Download</a>
+:floppy_disk: <a href="https://github.com/emoacht/ExifDateEditor/releases/latest">Download</a>
 
 ## License
 
