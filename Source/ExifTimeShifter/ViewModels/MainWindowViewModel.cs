@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
 using ExifTimeShifter.Common;
@@ -45,6 +46,9 @@ namespace ExifTimeShifter.ViewModels
 				Files.Add(new FileItem(filePath, originalDate));
 			}
 
+			foreach (var fileItem in Files)
+				fileItem.Image = await ExifThumbnail.ReadThumbnailAsync(fileItem.FilePath);
+
 			ChangeCanApply();
 		}
 
@@ -80,7 +84,7 @@ namespace ExifTimeShifter.ViewModels
 			Minute = 0;
 		}
 
-		private TimeSpan ChangeSpan => new TimeSpan(Day, Hour, Minute, 0);
+		private TimeSpan ShiftSpan => new TimeSpan(Day, Hour, Minute, 0);
 
 		#endregion
 
@@ -134,7 +138,7 @@ namespace ExifTimeShifter.ViewModels
 		private void ChangeCanApply()
 		{
 			CanApply = Files.Any()
-				&& (ChangeSpan != TimeSpan.Zero)
+				&& (ShiftSpan != TimeSpan.Zero)
 				&& (!SavesInAnotherLocation || Directory.Exists(AnotherLocationPath));
 		}
 
@@ -164,7 +168,7 @@ namespace ExifTimeShifter.ViewModels
 					{
 						await semaphore.WaitAsync();
 
-						var sourceFilePath = x.Path;
+						var sourceFilePath = x.FilePath;
 						if (!File.Exists(sourceFilePath))
 							return;
 
@@ -172,7 +176,7 @@ namespace ExifTimeShifter.ViewModels
 							? sourceFilePath
 							: Path.Combine(AnotherLocationPath, Path.GetFileName(sourceFilePath));
 
-						var (success, message, changedDate) = await ExifDate.ChangeDateTakenAsync(sourceFilePath, destinationFilePath, ChangeSpan);
+						var (success, message, changedDate) = await ExifDate.ChangeDateTakenAsync(sourceFilePath, destinationFilePath, ShiftSpan);
 						if (!success)
 						{
 							x.IsSuccess = false;
@@ -206,7 +210,7 @@ namespace ExifTimeShifter.ViewModels
 
 				var messages = Files
 					.Where(x => x.IsSuccess == false)
-					.Select(x => $"{Path.GetFileName(x.Path)} - {x.Message}")
+					.Select(x => $"{x.FileName} - {x.Message}")
 					.ToArray();
 
 				var successTotal = !messages.Any();
@@ -258,7 +262,16 @@ namespace ExifTimeShifter.ViewModels
 
 	public class FileItem : NotificationObject
 	{
-		public string Path { get; }
+		public string FilePath { get; }
+		public string FolderPath { get; }
+		public string FileName { get; }
+
+		public BitmapImage Image
+		{
+			get => _image;
+			set => SetPropertyValue(ref _image, value);
+		}
+		private BitmapImage _image;
 
 		public DateTime Date
 		{
@@ -276,9 +289,12 @@ namespace ExifTimeShifter.ViewModels
 
 		public string Message { get; set; }
 
-		public FileItem(string path, DateTime date)
+		public FileItem(string filePath, DateTime date)
 		{
-			this.Path = path;
+			this.FilePath = filePath;
+			FolderPath = Path.GetDirectoryName(filePath);
+			FileName = Path.GetFileName(filePath);
+
 			this.Date = date;
 		}
 	}
