@@ -26,7 +26,7 @@ namespace ExifTimeShifter.Test
 		[TestMethod]
 		public void SequenceIndicesOfByteArray()
 		{
-			bool Execute(string valueHexString, int maxCount, params int[] expected) =>
+			static bool Execute(string valueHexString, int maxCount, params int[] expected) =>
 				BytesExtension.SequenceIndicesOf(_sourceBytes, GetBytes(valueHexString), maxCount)
 					.ToArray()
 					.SequenceEqual(expected);
@@ -47,7 +47,7 @@ namespace ExifTimeShifter.Test
 		[TestMethod]
 		public void SequenceIndicesOfByteEnumerable()
 		{
-			bool Execute(string valueHexString, int maxCount, params int[] expected) =>
+			static bool Execute(string valueHexString, int maxCount, params int[] expected) =>
 				BytesExtension.SequenceIndicesOf(_sourceBytes, GetBytes(valueHexString).AsEnumerable(), maxCount)
 					.ToArray()
 					.SequenceEqual(expected);
@@ -72,7 +72,7 @@ namespace ExifTimeShifter.Test
 		[TestMethod]
 		public void SequenceIndexOfByteArray()
 		{
-			int Execute(string valueHexString, int startIndex) =>
+			static int Execute(string valueHexString, int startIndex) =>
 				BytesExtension.SequenceIndexOf(_sourceBytes, GetBytes(valueHexString), startIndex);
 
 			Assert.AreEqual(1, Execute("6F", 0));
@@ -106,7 +106,7 @@ namespace ExifTimeShifter.Test
 		[TestMethod]
 		public void SequenceIndexOfByteEnumerable()
 		{
-			int Execute(string valueHexString, int startIndex) =>
+			static int Execute(string valueHexString, int startIndex) =>
 				BytesExtension.SequenceIndexOf(_sourceBytes, GetBytes(valueHexString).AsEnumerable(), startIndex);
 
 			Assert.AreEqual(1, Execute("6F", 0));
