@@ -1,8 +1,9 @@
-﻿# Exif Time Roller
+﻿# Exif Time Shifter
 
-A simple tool to directly change Exif date fields in JPG files. It is useful when you wish to correct __date taken__ of photos that were taken with a camera whose date was incorrectly set.
+A simple tool to shift date/time of JPG files by directly changing Exif date fields while leaving other data intact. It is quite useful when you wish to adjust __date taken__ of photos that were taken by a camera whose internal time was incorrectly set.
 
 ![Screenshot](Images/Screenshot2.png)
+(DPI: 125%)
 
 ## Requirements
 
