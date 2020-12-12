@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\Clock.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>1.5.0</Version>
+    <Version>1.6.0</Version>
     <Authors>emoacht</Authors>
     <Company />
     <Product>Exif Time Shift</Product>
@@ -14,6 +14,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/emoacht/ExifTimeShift</PackageProjectUrl>
     <RepositoryUrl>https://github.com/emoacht/ExifTimeShift</RepositoryUrl>
+    <PackageReleaseNotes>Migrate to .NET 5.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
