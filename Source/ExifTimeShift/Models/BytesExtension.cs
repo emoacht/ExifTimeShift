@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExifTimeShifter.Models
+namespace ExifTimeShift.Models
 {
 	public static class BytesExtension
 	{

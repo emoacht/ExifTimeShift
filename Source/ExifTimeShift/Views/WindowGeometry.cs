@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace ExifTimeShifter.Views
+namespace ExifTimeShift.Views
 {
 	public class WindowGeometry
 	{

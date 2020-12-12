@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace ExifTimeShifter.Views.Controls
+namespace ExifTimeShift.Views.Controls
 {
 	[TemplatePart(Name = "PART_UpButton", Type = typeof(RepeatButton))]
 	[TemplatePart(Name = "PART_DownButton", Type = typeof(RepeatButton))]

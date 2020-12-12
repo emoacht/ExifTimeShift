@@ -9,11 +9,11 @@
     <Version>1.5.0</Version>
     <Authors>emoacht</Authors>
     <Company />
-    <Product>Exif Time Shifter</Product>
+    <Product>Exif Time Shift</Product>
     <Copyright>emoacht</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/emoacht/ExifTimeShifter</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/emoacht/ExifTimeShifter</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/emoacht/ExifTimeShift</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/emoacht/ExifTimeShift</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

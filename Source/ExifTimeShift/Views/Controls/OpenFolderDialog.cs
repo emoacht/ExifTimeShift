@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace ExifTimeShifter.Views.Controls
+namespace ExifTimeShift.Views.Controls
 {
 	/// <summary>
 	/// A folder dialog similar to <see cref="Microsoft.Win32.OpenFileDialog"/>

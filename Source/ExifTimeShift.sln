@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconImage", "IconImage\IconImage.csproj", "{FF649D56-8E56-4A34-812B-0455D1A4A616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifTimeShifter", "ExifTimeShifter\ExifTimeShifter.csproj", "{4CAC71C0-2065-4185-93F7-688DE83C58CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExifTimeShift", "ExifTimeShift\ExifTimeShift.csproj", "{4CAC71C0-2065-4185-93F7-688DE83C58CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifTimeShifter.Test", "ExifTimeShifter.Test\ExifTimeShifter.Test.csproj", "{18C9D17F-CF23-4210-AA62-5E3B7BFEC14F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExifTimeShift.Test", "ExifTimeShift.Test\ExifTimeShift.Test.csproj", "{18C9D17F-CF23-4210-AA62-5E3B7BFEC14F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

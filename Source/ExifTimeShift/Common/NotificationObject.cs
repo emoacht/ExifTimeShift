@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExifTimeShifter.Common
+namespace ExifTimeShift.Common
 {
 	public class NotificationObject : INotifyPropertyChanged
 	{

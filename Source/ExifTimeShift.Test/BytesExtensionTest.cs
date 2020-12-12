@@ -2,9 +2,9 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using ExifTimeShifter.Models;
+using ExifTimeShift.Models;
 
-namespace ExifTimeShifter.Test
+namespace ExifTimeShift.Test
 {
 	[TestClass]
 	public class BytesExtensionTest

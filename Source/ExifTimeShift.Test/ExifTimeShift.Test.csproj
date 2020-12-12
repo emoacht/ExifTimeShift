@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,8 +8,8 @@
     <Company />
     <Copyright>emoacht</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/emoacht/ExifTimeShifter</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/emoacht/ExifTimeShifter</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/emoacht/ExifTimeShift</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/emoacht/ExifTimeShift</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExifTimeShifter\ExifTimeShifter.csproj" />
+    <ProjectReference Include="..\ExifTimeShift\ExifTimeShift.csproj" />
   </ItemGroup>
 
 </Project>

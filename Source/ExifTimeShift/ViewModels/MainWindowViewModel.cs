@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
-using ExifTimeShifter.Common;
-using ExifTimeShifter.Models;
-using ExifTimeShifter.Views.Controls;
+using ExifTimeShift.Common;
+using ExifTimeShift.Models;
+using ExifTimeShift.Views.Controls;
 
-namespace ExifTimeShifter.ViewModels
+namespace ExifTimeShift.ViewModels
 {
 	public class MainWindowViewModel : NotificationObject
 	{
