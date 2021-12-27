@@ -7,7 +7,7 @@ A simple tool to shift date/time of JPG files by directly changing Exif date fie
 
 ## Requirements
 
- * .NET 5.0
+ * .NET 6.0
 
 ## Download
 
