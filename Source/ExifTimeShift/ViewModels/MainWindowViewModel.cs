@@ -29,7 +29,7 @@ namespace ExifTimeShift.ViewModels
 				Filter = "JPG Files|*.jpg",
 				Multiselect = true
 			};
-			if (ofd.ShowDialog() != true)
+			if (ofd.ShowDialog() is not true)
 				return;
 
 			Files.Clear();
@@ -84,7 +84,7 @@ namespace ExifTimeShift.ViewModels
 			Minute = 0;
 		}
 
-		private TimeSpan ShiftSpan => new TimeSpan(Day, Hour, Minute, 0);
+		private TimeSpan ShiftSpan => new(Day, Hour, Minute, 0);
 
 		#endregion
 
@@ -246,7 +246,7 @@ namespace ExifTimeShift.ViewModels
 
 		private const string LogFileName = "log.txt";
 
-		private Task SaveLogFile(string contents)
+		private static Task SaveLogFile(string contents)
 		{
 			return Task.Run(() =>
 			{
