@@ -12,7 +12,7 @@ namespace ExifTimeShift.Models
 		public static byte[] SequenceReplace(this byte[] source, byte[] oldValue, byte[] newValue, int maxCount = -1)
 		{
 			var sourceIndices = SequenceIndicesOf(source, oldValue, maxCount).ToArray();
-			if (!sourceIndices.Any())
+			if (sourceIndices is not { Length: > 0 })
 				return source;
 
 			var destination = new byte[source.Length + (newValue.Length - oldValue.Length) * sourceIndices.Length];
@@ -118,7 +118,7 @@ namespace ExifTimeShift.Models
 
 			int valueIndexLast = value.Length - 1;
 			if (valueIndexLast < 0)
-				throw new ArgumentException(nameof(value));
+				throw new ArgumentException("Value array must not be empty", nameof(value));
 
 			for (int sourceIndex = startIndex; sourceIndex < source.Length; sourceIndex++)
 			{
@@ -150,7 +150,7 @@ namespace ExifTimeShift.Models
 
 			int valueIndexLast = valueBytes.Length - 1;
 			if (valueIndexLast < 0)
-				throw new ArgumentException(nameof(value));
+				throw new ArgumentException("Value array must not be empty", nameof(value));
 
 			int sourceIndex = startIndex;
 
