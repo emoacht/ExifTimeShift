@@ -27,8 +27,8 @@ namespace ExifTimeShift.Views
 
 			this.DataContext = _mainWindowViewModel = new MainWindowViewModel();
 
-			this.Loaded += (sender, e) => CheckHeights();
-			this.DpiChanged += (sender, e) => CheckHeights();
+			this.Loaded += (_, _) => CheckHeights();
+			this.DpiChanged += (_, _) => CheckHeights();
 		}
 
 		private void CheckHeights()
