@@ -51,7 +51,7 @@ namespace ExifTimeShift.Views
 
 		public string ProductName => _productName.Value;
 
-		private readonly Lazy<string> _productName = new Lazy<string>(() =>
+		private readonly Lazy<string> _productName = new(() =>
 			Assembly.GetExecutingAssembly()
 				.GetCustomAttributes(typeof(AssemblyProductAttribute))
 				.Cast<AssemblyProductAttribute>()

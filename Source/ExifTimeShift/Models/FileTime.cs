@@ -63,20 +63,20 @@ namespace ExifTimeShift.Models
 
 		private static string GetErrorMessage(int errorCode)
 		{
-			var buff = new StringBuilder(512);
+			var buffer = new StringBuilder(512);
 
 			var length = FormatMessage(
 				FORMAT_MESSAGE_FROM_SYSTEM,
 				IntPtr.Zero,
 				(uint)errorCode,
 				0,
-				buff,
-				buff.Capacity,
+				buffer,
+				buffer.Capacity,
 				IntPtr.Zero);
 			if (length == 0)
 				throw new Win32Exception("Failed to get error message.");
 
-			return buff.ToString().TrimEnd();
+			return buffer.ToString().TrimEnd();
 		}
 	}
 }
