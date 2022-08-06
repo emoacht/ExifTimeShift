@@ -3,14 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.6.0</Version>
+    <Version>1.7.1</Version>
     <Authors>emoacht</Authors>
-    <Company />
-    <Copyright>emoacht</Copyright>
+    <Copyright>Copyright © 2017 emoacht</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/emoacht/ExifTimeShift</PackageProjectUrl>
     <RepositoryUrl>https://github.com/emoacht/ExifTimeShift</RepositoryUrl>
-    <PackageReleaseNotes>Migrate to .NET 5.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
