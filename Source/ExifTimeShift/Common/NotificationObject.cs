@@ -12,27 +12,27 @@ namespace ExifTimeShift.Common
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		protected void SetPropertyValue<T>(ref T storage, T value, Action onPropertyChanged, [CallerMemberName] string propertyName = null)
-		{
-			if (EqualityComparer<T>.Default.Equals(storage, value))
-				return;
-
-			storage = value;
-			RaisePropertyChanged(propertyName);
-			onPropertyChanged?.Invoke();
-		}
-
-		protected bool SetPropertyValue<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+		protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
 		{
 			if (EqualityComparer<T>.Default.Equals(storage, value))
 				return false;
 
 			storage = value;
-			RaisePropertyChanged(propertyName);
+			OnPropertyChanged(propertyName);
 			return true;
 		}
 
-		protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) =>
+		protected void SetProperty<T>(ref T storage, T value, Action onChainedPropertyChanged, [CallerMemberName] string propertyName = null)
+		{
+			if (EqualityComparer<T>.Default.Equals(storage, value))
+				return;
+
+			storage = value;
+			OnPropertyChanged(propertyName);
+			onChainedPropertyChanged?.Invoke();
+		}
+
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 }

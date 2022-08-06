@@ -59,21 +59,21 @@ namespace ExifTimeShift.ViewModels
 		public int Day
 		{
 			get => _day;
-			set => SetPropertyValue(ref _day, value, ChangeCanApply);
+			set => SetProperty(ref _day, value, ChangeCanApply);
 		}
 		private int _day = 0;
 
 		public int Hour
 		{
 			get => _hour;
-			set => SetPropertyValue(ref _hour, value, ChangeCanApply);
+			set => SetProperty(ref _hour, value, ChangeCanApply);
 		}
 		private int _hour = 0;
 
 		public int Minute
 		{
 			get => _minute;
-			set => SetPropertyValue(ref _minute, value, ChangeCanApply);
+			set => SetProperty(ref _minute, value, ChangeCanApply);
 		}
 		private int _minute = 0;
 
@@ -93,14 +93,14 @@ namespace ExifTimeShift.ViewModels
 		public bool SavesInAnotherLocation
 		{
 			get => _savesInAnotherLocation;
-			set => SetPropertyValue(ref _savesInAnotherLocation, value, ChangeCanApply);
+			set => SetProperty(ref _savesInAnotherLocation, value, ChangeCanApply);
 		}
 		private bool _savesInAnotherLocation = true; // Safer side
 
 		public string AnotherLocationPath
 		{
 			get => _anotherLocationPath;
-			set => SetPropertyValue(ref _anotherLocationPath, value, ChangeCanApply);
+			set => SetProperty(ref _anotherLocationPath, value, ChangeCanApply);
 		}
 		private string _anotherLocationPath;
 
@@ -131,7 +131,7 @@ namespace ExifTimeShift.ViewModels
 		public bool CanApply
 		{
 			get => _canApply;
-			private set => SetPropertyValue(ref _canApply, value);
+			private set => SetProperty(ref _canApply, value);
 		}
 		private bool _canApply = false;
 
@@ -145,7 +145,7 @@ namespace ExifTimeShift.ViewModels
 		public bool IsApplying
 		{
 			get => _isApplying;
-			set => SetPropertyValue(ref _isApplying, value);
+			set => SetProperty(ref _isApplying, value);
 		}
 		private bool _isApplying;
 
@@ -269,21 +269,21 @@ namespace ExifTimeShift.ViewModels
 		public BitmapImage Image
 		{
 			get => _image;
-			set => SetPropertyValue(ref _image, value);
+			set => SetProperty(ref _image, value);
 		}
 		private BitmapImage _image;
 
 		public DateTime Date
 		{
 			get => _date;
-			set => SetPropertyValue(ref _date, value);
+			set => SetProperty(ref _date, value);
 		}
 		private DateTime _date;
 
 		public bool? IsSuccess
 		{
 			get => _isSuccess;
-			set => SetPropertyValue(ref _isSuccess, value);
+			set => SetProperty(ref _isSuccess, value);
 		}
 		private bool? _isSuccess = null;
 

@@ -185,10 +185,7 @@ namespace ExifTimeShift.Models
 				if (a[i] == b[i])
 					continue;
 
-				Debug.WriteLine("Position: {0} (0x{0:X4}) Value: {1} -> {2}",
-				  i,
-				  BitConverter.ToString(new[] { a[i] }),
-				  BitConverter.ToString(new[] { b[i] }));
+				Debug.WriteLine($"Position: {i} (0x{i:X4}) Value: {BitConverter.ToString(a, i, 1)} -> {BitConverter.ToString(b, i, 1)}");
 			}
 		}
 	}
